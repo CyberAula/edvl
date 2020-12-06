@@ -105,7 +105,24 @@ services:
     command: bash -c "pip install --no-cache-dir -r /entities/requirements.txt && python /entities/runDraco.py && sh /entities/subscribeResPredictionTicketDraco.sh"
     volumes:
       - ./entities:/entities
+  zeppelin:
+    image: apache/zeppelin:0.9.0
+    container_name: zeppelin
+    ports:
+      - 80:8080
+    volumes:
+      - ./notebook:/opt/zeppelin/notebook
+      - ./dependencies:/opt/external-jars
+    environment:
+      # CORE_CONF_fs_defaultFS: "hdfs://namenode:8020"
+      SPARK_MASTER: "spark://spark-master:7077"
+      MASTER: "spark://spark-master:7077"
+      SPARK_SUBMIT_OPTIONS: "--jars /opt/external-jars/orion.spark.connector-1.2.1.jar"
+    depends_on:
+      - spark-master
+    networks:
+      - fiware
 
-
+  
 networks:
   fiware:
