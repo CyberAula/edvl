@@ -1,0 +1,196 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "\n\nimport org.apache.spark._\nimport org.apache.spark.streaming.{Seconds, StreamingContext}\nimport org.fiware.cosmos.orion.spark.connector._\nimport org.apache.spark.sql.{DataFrame, SparkSession}\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-01-15T21:03:44+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark._\nimport org.apache.spark.streaming.{Seconds, StreamingContext}\nimport org.fiware.cosmos.orion.spark.connector._\nimport org.apache.spark.sql.{DataFrame, SparkSession}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1610744553057_1996205792",
+      "id": "paragraph_1610743364358_10135805",
+      "dateCreated": "2021-01-15T21:02:33+0000",
+      "dateStarted": "2021-01-15T21:03:44+0000",
+      "dateFinished": "2021-01-15T21:03:56+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:6803"
+    },
+    {
+      "text": "   val spark = SparkSession\n      .builder\n      .appName(\"StructuredNetworkWordCount\")\n      .master(\"spark://spark-master:7077\")\n      .getOrCreate()\n    import spark.implicits._\n    \nval sc = spark.sparkContext\nval ssc = new StreamingContext(sc, Seconds(10))",
+      "user": "anonymous",
+      "dateUpdated": "2021-01-15T21:03:49+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m = org.apache.spark.sql.SparkSession@53c86369\nimport spark.implicits._\n\u001b[1m\u001b[34msc\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.SparkContext\u001b[0m = org.apache.spark.SparkContext@3210b7d5\n\u001b[1m\u001b[34mssc\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.streaming.StreamingContext\u001b[0m = org.apache.spark.streaming.StreamingContext@661968fb\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1610744553057_1919478147",
+      "id": "paragraph_1610743394280_357875828",
+      "dateCreated": "2021-01-15T21:02:33+0000",
+      "dateStarted": "2021-01-15T21:03:49+0000",
+      "dateFinished": "2021-01-15T21:03:59+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:6804"
+    },
+    {
+      "text": "val eventStream = ssc.receiverStream(new OrionReceiver(9001))\n\n    // Process event stream\n    eventStream\n      .flatMap(event => event.entities)\n      .map(ent => {\n        val temp: Float = ent.attrs(\"temperature\").value.asInstanceOf[Number].floatValue()\n        (ent.id, temp)\n      })\n      .reduceByKeyAndWindow(_ min _ ,Seconds(10))\n\n      .print()\n\n\n    ssc.start()\n    ssc.awaitTermination()",
+      "user": "anonymous",
+      "dateUpdated": "2021-01-15T21:04:04+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1610744553058_1962511643",
+      "id": "paragraph_1610743504831_1238254937",
+      "dateCreated": "2021-01-15T21:02:33+0000",
+      "dateStarted": "2021-01-15T21:04:04+0000",
+      "status": "RUNNING",
+      "$$hashKey": "object:6805"
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2021-01-15T21:04:16+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1610744553058_653264020",
+      "id": "paragraph_1610743529587_1340499690",
+      "dateCreated": "2021-01-15T21:02:33+0000",
+      "status": "READY",
+      "$$hashKey": "object:6806"
+    },
+    {
+      "user": "anonymous",
+      "dateUpdated": "2021-01-15T21:02:33+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1610744553058_1671100676",
+      "id": "paragraph_1610744157678_494920324",
+      "dateCreated": "2021-01-15T21:02:33+0000",
+      "status": "READY",
+      "$$hashKey": "object:6807"
+    }
+  ],
+  "name": "Example1",
+  "id": "2FV65AGDV",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/Example1"
+}
