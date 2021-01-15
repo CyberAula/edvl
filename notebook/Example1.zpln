@@ -43,7 +43,7 @@
       "$$hashKey": "object:6803"
     },
     {
-      "text": "   val spark = SparkSession\n      .builder\n      .appName(\"StructuredNetworkWordCount\")\n      .master(\"spark://spark-master:7077\")\n      .getOrCreate()\n    import spark.implicits._\n    \nval sc = spark.sparkContext\nval ssc = new StreamingContext(sc, Seconds(10))",
+      "text": "   val spark = SparkSession\n      .builder\n      .appName(\"FIWARE\")\n      .master(\"spark://spark-master:7077\")\n      .getOrCreate()\n    import spark.implicits._\n    \nval sc = spark.sparkContext\nval ssc = new StreamingContext(sc, Seconds(10))",
       "user": "anonymous",
       "dateUpdated": "2021-01-15T21:03:49+0000",
       "config": {
