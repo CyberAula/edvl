@@ -66,6 +66,8 @@ services:
     environment:
       - "SPARK_MASTER=spark://spark-master:7077"
       - "constraint:node==spark-master"
+    volumes:
+      - ./prediction-job:/prediction-job
     networks:
         - fiware
   # maven:
@@ -114,7 +116,7 @@ services:
       - "8079:8080"
     volumes: 
       - ./dependencies:/zeppelin/external-jars
-      - ./prediction-job:/zeppelin/prediction-job
+      - ./prediction-job:/prediction-job
     volumes_from: 
       - spark-master:ro
     environment:
