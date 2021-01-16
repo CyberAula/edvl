@@ -13,16 +13,18 @@ docker-compose up
 
 * Open browser in http://localhost:8079
 
-* Click on anonymous in top right corner and choose "Interpreters"
-
-* Search for Spark and click "edit"
-
-* Add the following in the "Artifact" field of the "Dependencies" section: ``/zeppelin/external-jars/orion.spark.connector-1.2.1.jar``
-
-* Go back to main Zeppelin page by clicking on the logo and click "Import note". Pick a name and choose the "Select JSON File/IPYNB File" option
+* Click "Import note". Pick a name and choose the "Select JSON File/IPYNB File" option
 
 * Open the notebook "Example1.zpln" in the directory ``notebook`` of this repository
 
 * Run one by one each of the chunks
 
-* After running the last one open a new terminal and run the simulated notifications ```sh simulated_notification.sh```
+* After running the last chunk open a new terminal and run the script to create an entity in Orion: ```sh create_entity.sh```
+
+* Create the subscription to the entity, notifying the spark-worker of any change: ```sh subscribe.sh```
+
+* Simulate new data arriving to Orion ```sh simulated_data_entity.sh```
+
+* See how in the notebook the minimum temperature each 10 seconds appears.
+
+* If you wish to skip Orion and simulate data arriving directly to Spark you can run ```sh simulated_notification.sh``` instead of the previous 3 scripts.

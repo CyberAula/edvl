@@ -2,7 +2,7 @@ version: "2"
 services:
   mongo:
     container_name: mongo
-    image: mongo:3.4
+    image: mongo:3.6
     command: --nojournal
     networks:
       - fiware
@@ -18,7 +18,9 @@ services:
       - mongo
     ports:
       - "1026:1026"
-    command: -dbhost mongo -dbuser root -dbpwd example #-logLevel DEBUG
+    command: -dbhost mongo -dbuser root -dbpwd example
+    depends_on:
+      - mongo
     networks:
       - fiware
   spark-master:
