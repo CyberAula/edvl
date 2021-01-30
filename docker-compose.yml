@@ -33,6 +33,8 @@ services:
     environment:
       - INIT_DAEMON_STEP=setup_spark
       - "constraint:node==spark-master"
+      - "ORION_HOST=http://orion:1026"
+      - "NOTIFICATION_HOST=http://spark-master"
     networks:
          - fiware
     volumes:
@@ -50,6 +52,8 @@ services:
     environment:
       - "SPARK_MASTER=spark://spark-master:7077"
       - "constraint:node==spark-master"
+      - "ORION_HOST=http://orion:1026"
+      - "NOTIFICATION_HOST=http://spark-worker-1"
     volumes:
       - ./prediction-job:/prediction-job
     networks:
@@ -69,7 +73,7 @@ services:
       - "SPARK_MASTER=spark://spark-master:7077"
       - "MASTER=spark://spark-master:7077"
       - "SPARK_HOME=/spark"
-      - "SPARK_SUBMIT_OPTIONS= --jars /zeppelin/external-jars/orion.spark.connector-1.2.1.jar"
+      - "SPARK_SUBMIT_OPTIONS= --jars /zeppelin/external-jars/orion.spark.connector-1.3.0.jar"
     depends_on:
       - spark-master
     networks:
