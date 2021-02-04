@@ -11,35 +11,26 @@ cd edvl-test
 docker-compose up
 ```
 
+## Spark Streaming example with Scala
+
 * Open browser in http://localhost:8079
 
 * Click "Import note". Pick a name and choose the "Select JSON File/IPYNB File" option
 
-## Automatic subscription
+* Open the notebook "ExampleStreamingGraph.zpln" in the directory ``notebook`` of this repository
 
-* Open the notebook "Example2.zpln" in the directory ``notebook`` of this repository
+* In a terminal, simulate new data arriving to Orion  by running```sh simulated_data_entity.sh```
 
-* Run one by one each of the chunks
+* Run one by one each of the chunks in the notebook
 
-* After running the last chunk open a new terminal and run the script to create an entity in Orion: ```sh create_entity.sh``` (skip it if you have done it already)
+* See how in the notebook the temperature updates in the graph
 
-* Simulate new data arriving to Orion ```sh simulated_data_entity.sh```
+## PySpark batch example with pandas
 
-* See how in the notebook the minimum temperature each 10 seconds appears.
+* Open browser in http://localhost:8079
 
-## Manual subscription
+* Click "Import note". Pick a name and choose the "Select JSON File/IPYNB File" option
 
-* Open the notebook "Example1.zpln" in the directory ``notebook`` of this repository
+* Open the notebook "ExamplePlotCSV.zpln" in the directory ``notebook`` of this repository
 
-* Run one by one each of the chunks
-
-* After running the last chunk open a new terminal and run the script to create an entity in Orion: ```sh create_entity.sh``` (skip it if you have done it already)
-
-* Create the subscription to the entity, notifying the spark-worker of any change: ```sh subscribe.sh```
-
-* Simulate new data arriving to Orion ```sh simulated_data_entity.sh```
-
-* See how in the notebook the minimum temperature each 10 seconds appears.
-
-* If you wish to skip Orion and simulate data arriving directly to Spark you can run ```sh simulated_notification.sh``` instead of the previous 3 scripts.
-
+* Run one by one each of the chunks in the notebook

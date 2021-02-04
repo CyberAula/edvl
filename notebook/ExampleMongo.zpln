@@ -1,0 +1,336 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": " import org.apache.spark.sql.SparkSession\n    val spark = SparkSession.builder()\n      .master(\"local\")\n      .appName(\"MongoSparkConnectorIntro\")\n      .config(\"spark.mongodb.input.uri\", \"mongodb://mongo:27017/sth_test.myCollection\")\n      .getOrCreate()",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04T15:11:34+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SparkSession\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m = org.apache.spark.sql.SparkSession@3e360fe1\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612450945002_940714574",
+      "id": "paragraph_1612439378171_1791641576",
+      "dateCreated": "2021-02-04T15:02:25+0000",
+      "dateStarted": "2021-02-04T15:11:34+0000",
+      "dateFinished": "2021-02-04T15:11:34+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:181"
+    },
+    {
+      "text": "\nimport com.mongodb.spark._\nimport com.mongodb.spark.config.ReadConfig\n \nimport org.apache.spark.{SparkConf, SparkContext}\n\n\nval conf = new SparkConf()\n.setAppName(\"mongozips\")\n \n\nval sc = new SparkContext(conf)\nval readConfig = ReadConfig(Map(\"uri\" -> \"mongodb://mongo:27017/\", \"database\" -> \"sth_test\", \"collection\" -> \"sth_x002f\", \"sampleSize\" -> \"100000\")) // 1)\nval zipDf = sc.loadFromMongoDB(readConfig).toDF() // 2)\n\nzipDf.printSchema() // 3)\nzipDf.show()\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04T15:12:56+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "<console>:32: \u001b[31merror: \u001b[0mSymbol 'term org.bson' is missing from the classpath.\nThis symbol is required by 'type com.mongodb.spark.config.ReadConfig.B'.\nMake sure that term bson is in your classpath and check for conflicting dependencies with `-Ylog-classpath`.\nA full rebuild may help if 'ReadConfig.class' was compiled against an incompatible version of org.\nclass $iw extends Serializable {\n      ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612450945004_124881813",
+      "id": "paragraph_1612439679117_2074338037",
+      "dateCreated": "2021-02-04T15:02:25+0000",
+      "dateStarted": "2021-02-04T15:12:49+0000",
+      "dateFinished": "2021-02-04T15:12:50+0000",
+      "status": "ERROR",
+      "$$hashKey": "object:182"
+    },
+    {
+      "text": "\n// import org.bson.Document\nimport org.apache.spark.sql.SparkSession\n \nval spark = SparkSession.builder()\n  .master(\"local\")\n  .appName(\"MongoSparkConnectorIntro\")\n  .config(\"spark.mongodb.input.uri\", \"mongodb://mongo:27017/sth_test.sth_x002f\")\n  .config(\"spark.mongodb.output.uri\", \"mongodb://mongo:27017/sth_test.sth_x002f\")\n  .getOrCreate()\nval sc = spark.sparkContext",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04T15:25:19+0000",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.SparkSession\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m = org.apache.spark.sql.SparkSession@3e360fe1\n\u001b[1m\u001b[34msc\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.SparkContext\u001b[0m = org.apache.spark.SparkContext@35c273c4\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612450945008_1661391611",
+      "id": "paragraph_1612439808973_645561483",
+      "dateCreated": "2021-02-04T15:02:25+0000",
+      "dateStarted": "2021-02-04T15:25:19+0000",
+      "dateFinished": "2021-02-04T15:25:19+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:183"
+    },
+    {
+      "text": "import com.mongodb.spark._\n\n\nval rdd = MongoSpark.load(sc)\nprintln(rdd.count)\nprintln(rdd.first.toJson)\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04T15:23:28+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "<console>:49: \u001b[31merror: \u001b[0merroneous or inaccessible type\n       val rdd = MongoSpark.load(sc)\n           ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612451384544_601499775",
+      "id": "paragraph_1612451384544_601499775",
+      "dateCreated": "2021-02-04T15:09:44+0000",
+      "dateStarted": "2021-02-04T15:23:28+0000",
+      "dateFinished": "2021-02-04T15:23:28+0000",
+      "status": "ERROR",
+      "$$hashKey": "object:184"
+    },
+    {
+      "text": "sc.loadFromMongoDB() ",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04T15:25:23+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "<console>:54: \u001b[31merror: \u001b[0merroneous or inaccessible type\n       val res32 =\n           ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612452019368_1531877614",
+      "id": "paragraph_1612452019368_1531877614",
+      "dateCreated": "2021-02-04T15:20:19+0000",
+      "dateStarted": "2021-02-04T15:25:23+0000",
+      "dateFinished": "2021-02-04T15:25:23+0000",
+      "status": "ERROR",
+      "$$hashKey": "object:185"
+    },
+    {
+      "user": "anonymous",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612452214065_745957323",
+      "id": "paragraph_1612452214065_745957323",
+      "dateCreated": "2021-02-04T15:23:34+0000",
+      "status": "ERROR",
+      "$$hashKey": "object:186",
+      "text": "val rdd = MongoSpark.load(sc)\n",
+      "dateUpdated": "2021-02-04T15:25:46+0000",
+      "dateFinished": "2021-02-04T15:25:46+0000",
+      "dateStarted": "2021-02-04T15:25:46+0000",
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "<console>:54: \u001b[31merror: \u001b[0merroneous or inaccessible type\n       val rdd = MongoSpark.load(sc)\n           ^\n"
+          }
+        ]
+      }
+    },
+    {
+      "user": "anonymous",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612452346721_565581164",
+      "id": "paragraph_1612452346721_565581164",
+      "dateCreated": "2021-02-04T15:25:46+0000",
+      "status": "ERROR",
+      "focus": true,
+      "$$hashKey": "object:745",
+      "text": "sc.loadFromMongoDB(ReadConfig(Map(\"uri\" -> \"mongodb://mongo:27017/sth_test.sth_x002f\"))) // Uses the ReadConfig\n\n",
+      "dateUpdated": "2021-02-04T15:26:12+0000",
+      "dateFinished": "2021-02-04T15:26:12+0000",
+      "dateStarted": "2021-02-04T15:26:12+0000",
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "<console>:55: \u001b[31merror: \u001b[0mnot found: value ReadConfig\n       sc.loadFromMongoDB(ReadConfig(Map(\"uri\" -> \"mongodb://mongo:27017/sth_test.sth_x002f\"))) // Uses the ReadConfig\n                          ^\n"
+          }
+        ]
+      }
+    },
+    {
+      "user": "anonymous",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612452372449_314002320",
+      "id": "paragraph_1612452372449_314002320",
+      "dateCreated": "2021-02-04T15:26:12+0000",
+      "status": "READY",
+      "focus": true,
+      "$$hashKey": "object:845"
+    }
+  ],
+  "name": "ExampleMongo",
+  "id": "2FVWWPMXY",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/ExampleMongo"
+}

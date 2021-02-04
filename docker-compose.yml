@@ -7,7 +7,7 @@ services:
     networks:
       - fiware
     ports:
-      - "27017:27017"
+      - "27018:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
@@ -74,7 +74,7 @@ services:
       - "SPARK_MASTER=spark://spark-master:7077"
       - "MASTER=spark://spark-master:7077"
       - "SPARK_HOME=/spark"
-      - "SPARK_SUBMIT_OPTIONS= --jars /zeppelin/external-jars/orion.spark.connector-1.3.0.jar"
+      - "SPARK_SUBMIT_OPTIONS= --packages org.mongodb.spark:mongo-spark-connector_2.11:2.4.2 --jars /zeppelin/external-jars/orion.spark.connector-1.3.0.jar,/zeppelin/external-jars/mongo-spark-connector_2.11-2.4.2.jar"
     depends_on:
       - spark-master
     networks:
@@ -102,7 +102,7 @@ services:
       - DRACO_ENDPOINT=draco:9090
     networks:
       - fiware
-    command: bash -c "sleep 120 && pip install --no-cache-dir -r /entities/requirements.txt && python /entities/runDraco.py && sh /entities/subscribeResPredictionTicketDraco.sh"
+    command: bash -c "sleep 120 && pip install --no-cache-dir -r /entities/requirements.txt && sh /entities/createPredictionEntities.sh && python /entities/runDraco.py && sh /entities/subscribeRoomTicket.sh"
     volumes:
       - ./entities:/entities
 
