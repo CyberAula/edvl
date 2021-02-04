@@ -1,254 +1,165 @@
 ﻿{
   "paragraphs": [
     {
-      "text": " import org.apache.spark.sql.SparkSession\n    val spark = SparkSession.builder()\n      .master(\"local\")\n      .appName(\"MongoSparkConnectorIntro\")\n      .config(\"spark.mongodb.input.uri\", \"mongodb://mongo:27017/sth_test.myCollection\")\n      .getOrCreate()",
+      "text": "import com.mongodb.spark.config._\nimport com.mongodb.spark.sql._\nval spark = SparkSession.builder()\n  .master(\"local\")\n  .appName(\"MongoSparkConnectorIntro\")\n  .config(\"spark.mongodb.input.uri\", \"mongodb://mongo:27017/sth_test.sth_x002f\")\n  .config(\"spark.mongodb.output.uri\", \"mongodb://mongo:27017/sth_test.sth_x002f\")\n  .getOrCreate()\nval sc = spark.sparkContext\nval readConfig = ReadConfig(Map(\"uri\" -> \"mongodb://root:example@mongo:27017/\", \"database\" -> \"sth_test\", \"collection\" -> \"sth_x002f\", \"sampleSize\" -> \"100000\")) // 1)\n\nval customRdd = MongoSpark.load(sc, readConfig)\nprintln(customRdd.count)\nprintln(customRdd.first.toJson)",
       "user": "anonymous",
-      "dateUpdated": "2021-02-04T15:11:34+0000",
+      "dateUpdated": "2021-02-04T17:55:49+0000",
       "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
-        "colWidth": 12,
-        "editorMode": "ace/mode/scala",
-        "fontSize": 9,
-        "results": {},
-        "enabled": true
+        "editorMode": "ace/mode/scala"
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=129",
+              "$$hashKey": "object:3481"
+            },
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=130",
+              "$$hashKey": "object:3482"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612459225408_42458394",
+      "id": "paragraph_1612459225408_42458394",
+      "dateCreated": "2021-02-04T17:20:25+0000",
+      "dateStarted": "2021-02-04T17:55:49+0000",
+      "dateFinished": "2021-02-04T17:55:50+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:2912",
       "results": {
         "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.sql.SparkSession\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m = org.apache.spark.sql.SparkSession@3e360fe1\n"
+            "data": "964\n{\"_id\": {\"$oid\": \"601c2bd12ab79c003f9fd162\"}, \"recvTime\": {\"$date\": 1612458960828}, \"entityId\": \"Room1\", \"entityType\": \"Room\", \"attrName\": \"temperature\", \"attrType\": \"Float\", \"attrValue\": \"30\", \"attrMetadata\": []}\nimport com.mongodb.spark.config._\nimport com.mongodb.spark.sql._\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m = org.apache.spark.sql.SparkSession@4aa00efc\n\u001b[1m\u001b[34msc\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.SparkContext\u001b[0m = org.apache.spark.SparkContext@72a70ab6\n\u001b[1m\u001b[34mreadConfig\u001b[0m: \u001b[1m\u001b[32mcom.mongodb.spark.config.ReadConfig.Self\u001b[0m = ReadConfig(sth_test,sth_x002f,Some(mongodb://root:example@mongo:27017/),100000,DefaultMongoPartitioner,Map(),15,ReadPreferenceConfig(primary,None),ReadConcernConfig(None),AggregationConfig(None,None,None,true),false,true,250,true,true,10000,None)\n\u001b[1m\u001b[34mcustomRdd\u001b[0m: \u001b[1m\u001b[32mcom.mongodb.spark.rdd.MongoRDD[org.bson.Document]\u001b[0m = MongoRDD[413] at RDD at MongoRDD.scala:51\n"
           }
         ]
+      }
+    },
+    {
+      "text": "val highTemp = customRdd.filter(doc => doc.get(\"attrName\").toString == \"temperature\").filter(doc => doc.get(\"attrValue\").toString.toDouble > 50)\nhighTemp.count\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04T17:55:52+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
       },
       "apps": [],
-      "runtimeInfos": {},
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=131",
+              "$$hashKey": "object:3540"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1612450945002_940714574",
-      "id": "paragraph_1612439378171_1791641576",
-      "dateCreated": "2021-02-04T15:02:25+0000",
-      "dateStarted": "2021-02-04T15:11:34+0000",
-      "dateFinished": "2021-02-04T15:11:34+0000",
+      "jobName": "paragraph_1612459479391_1595539207",
+      "id": "paragraph_1612459479391_1595539207",
+      "dateCreated": "2021-02-04T17:24:39+0000",
+      "dateStarted": "2021-02-04T17:55:52+0000",
+      "dateFinished": "2021-02-04T17:55:52+0000",
       "status": "FINISHED",
-      "focus": true,
-      "$$hashKey": "object:181"
-    },
-    {
-      "text": "\nimport com.mongodb.spark._\nimport com.mongodb.spark.config.ReadConfig\n \nimport org.apache.spark.{SparkConf, SparkContext}\n\n\nval conf = new SparkConf()\n.setAppName(\"mongozips\")\n \n\nval sc = new SparkContext(conf)\nval readConfig = ReadConfig(Map(\"uri\" -> \"mongodb://mongo:27017/\", \"database\" -> \"sth_test\", \"collection\" -> \"sth_x002f\", \"sampleSize\" -> \"100000\")) // 1)\nval zipDf = sc.loadFromMongoDB(readConfig).toDF() // 2)\n\nzipDf.printSchema() // 3)\nzipDf.show()\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-02-04T15:12:56+0000",
-      "config": {
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "colWidth": 12,
-        "editorMode": "ace/mode/scala",
-        "fontSize": 9,
-        "results": {},
-        "enabled": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "<console>:32: \u001b[31merror: \u001b[0mSymbol 'term org.bson' is missing from the classpath.\nThis symbol is required by 'type com.mongodb.spark.config.ReadConfig.B'.\nMake sure that term bson is in your classpath and check for conflicting dependencies with `-Ylog-classpath`.\nA full rebuild may help if 'ReadConfig.class' was compiled against an incompatible version of org.\nclass $iw extends Serializable {\n      ^\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1612450945004_124881813",
-      "id": "paragraph_1612439679117_2074338037",
-      "dateCreated": "2021-02-04T15:02:25+0000",
-      "dateStarted": "2021-02-04T15:12:49+0000",
-      "dateFinished": "2021-02-04T15:12:50+0000",
-      "status": "ERROR",
-      "$$hashKey": "object:182"
-    },
-    {
-      "text": "\n// import org.bson.Document\nimport org.apache.spark.sql.SparkSession\n \nval spark = SparkSession.builder()\n  .master(\"local\")\n  .appName(\"MongoSparkConnectorIntro\")\n  .config(\"spark.mongodb.input.uri\", \"mongodb://mongo:27017/sth_test.sth_x002f\")\n  .config(\"spark.mongodb.output.uri\", \"mongodb://mongo:27017/sth_test.sth_x002f\")\n  .getOrCreate()\nval sc = spark.sparkContext",
-      "user": "anonymous",
-      "dateUpdated": "2021-02-04T15:25:19+0000",
-      "config": {
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "colWidth": 12,
-        "editorMode": "ace/mode/scala",
-        "fontSize": 9,
-        "results": {},
-        "enabled": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
+      "$$hashKey": "object:2913",
       "results": {
         "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.sql.SparkSession\n\u001b[1m\u001b[34mspark\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.SparkSession\u001b[0m = org.apache.spark.sql.SparkSession@3e360fe1\n\u001b[1m\u001b[34msc\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.SparkContext\u001b[0m = org.apache.spark.SparkContext@35c273c4\n"
+            "data": "\u001b[1m\u001b[34mhighTemp\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.rdd.RDD[org.bson.Document]\u001b[0m = MapPartitionsRDD[415] at filter at <console>:111\n\u001b[1m\u001b[34mres125\u001b[0m: \u001b[1m\u001b[32mLong\u001b[0m = 37\n"
           }
         ]
+      }
+    },
+    {
+      "text": "%angular\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js@2.8.0\"></script>\n<script type=\"text/javascript\">\n \n    var ctx = document.getElementById('myChart').getContext('2d');\n    var chart = new Chart(ctx, {\n        type: 'line',\n        data: {\n            labels: [],\n            datasets: [{\n                label: 'Room Temperature',\n                backgroundColor: 'rgba(30, 168, 150, .5)',\n                borderColor: 'rgb(30, 168, 150)',\n                data: []\n            }]\n        },\n        options: {}\n    });\n  \n    var element = $('#someId');\n    var scope = angular.element(element.parent('.ng-scope')).scope().compiledScope;\n    scope.data = []\n    window.watcher = scope.$watch('newTemp', (newVal, oldVal) => {\n        scope.data.push(newVal)\n        chart.data.labels.push(new Date().getTime());\n        chart.data.datasets.forEach((dataset) => {\n            dataset.data.push(newVal);\n        });\n        chart.update();\n    });\n</script>\n<div id=\"someId\" style=\"display:none;\">\n    <span ng-repeat=\"ditem in data track by $index\">{{ditem}}-</span>\n</div>\n<canvas id=\"myChart\" style=\"width: 500px; height: 200px;\"></canvas>",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04T17:55:58+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/text"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
       },
       "apps": [],
       "runtimeInfos": {},
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1612450945008_1661391611",
-      "id": "paragraph_1612439808973_645561483",
-      "dateCreated": "2021-02-04T15:02:25+0000",
-      "dateStarted": "2021-02-04T15:25:19+0000",
-      "dateFinished": "2021-02-04T15:25:19+0000",
+      "jobName": "paragraph_1612460482863_929711274",
+      "id": "paragraph_1612460482863_929711274",
+      "dateCreated": "2021-02-04T17:41:22+0000",
+      "dateStarted": "2021-02-04T17:55:58+0000",
+      "dateFinished": "2021-02-04T17:55:58+0000",
       "status": "FINISHED",
-      "$$hashKey": "object:183"
-    },
-    {
-      "text": "import com.mongodb.spark._\n\n\nval rdd = MongoSpark.load(sc)\nprintln(rdd.count)\nprintln(rdd.first.toJson)\n",
-      "user": "anonymous",
-      "dateUpdated": "2021-02-04T15:23:28+0000",
-      "config": {
-        "colWidth": 12,
-        "fontSize": 9,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
+      "$$hashKey": "object:2914",
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
-            "type": "TEXT",
-            "data": "<console>:49: \u001b[31merror: \u001b[0merroneous or inaccessible type\n       val rdd = MongoSpark.load(sc)\n           ^\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1612451384544_601499775",
-      "id": "paragraph_1612451384544_601499775",
-      "dateCreated": "2021-02-04T15:09:44+0000",
-      "dateStarted": "2021-02-04T15:23:28+0000",
-      "dateFinished": "2021-02-04T15:23:28+0000",
-      "status": "ERROR",
-      "$$hashKey": "object:184"
-    },
-    {
-      "text": "sc.loadFromMongoDB() ",
-      "user": "anonymous",
-      "dateUpdated": "2021-02-04T15:25:23+0000",
-      "config": {
-        "colWidth": 12,
-        "fontSize": 9,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "<console>:54: \u001b[31merror: \u001b[0merroneous or inaccessible type\n       val res32 =\n           ^\n"
-          }
-        ]
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1612452019368_1531877614",
-      "id": "paragraph_1612452019368_1531877614",
-      "dateCreated": "2021-02-04T15:20:19+0000",
-      "dateStarted": "2021-02-04T15:25:23+0000",
-      "dateFinished": "2021-02-04T15:25:23+0000",
-      "status": "ERROR",
-      "$$hashKey": "object:185"
-    },
-    {
-      "user": "anonymous",
-      "config": {
-        "colWidth": 12,
-        "fontSize": 9,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "editorMode": "ace/mode/scala"
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "runtimeInfos": {},
-      "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1612452214065_745957323",
-      "id": "paragraph_1612452214065_745957323",
-      "dateCreated": "2021-02-04T15:23:34+0000",
-      "status": "ERROR",
-      "$$hashKey": "object:186",
-      "text": "val rdd = MongoSpark.load(sc)\n",
-      "dateUpdated": "2021-02-04T15:25:46+0000",
-      "dateFinished": "2021-02-04T15:25:46+0000",
-      "dateStarted": "2021-02-04T15:25:46+0000",
-      "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "<console>:54: \u001b[31merror: \u001b[0merroneous or inaccessible type\n       val rdd = MongoSpark.load(sc)\n           ^\n"
+            "type": "ANGULAR",
+            "data": "<script src=\"https://cdn.jsdelivr.net/npm/chart.js@2.8.0\"></script>\n<script type=\"text/javascript\">\n \n    var ctx = document.getElementById('myChart').getContext('2d');\n    var chart = new Chart(ctx, {\n        type: 'line',\n        data: {\n            labels: [],\n            datasets: [{\n                label: 'Room Temperature',\n                backgroundColor: 'rgba(30, 168, 150, .5)',\n                borderColor: 'rgb(30, 168, 150)',\n                data: []\n            }]\n        },\n        options: {}\n    });\n  \n    var element = $('#someId');\n    var scope = angular.element(element.parent('.ng-scope')).scope().compiledScope;\n    scope.data = []\n    window.watcher = scope.$watch('newTemp', (newVal, oldVal) => {\n        scope.data.push(newVal)\n        chart.data.labels.push(new Date().getTime());\n        chart.data.datasets.forEach((dataset) => {\n            dataset.data.push(newVal);\n        });\n        chart.update();\n    });\n</script>\n<div id=\"someId\" style=\"display:none;\">\n    <span ng-repeat=\"ditem in data track by $index\">{{ditem}}-</span>\n</div>\n<canvas id=\"myChart\" style=\"width: 500px; height: 200px;\"></canvas>"
           }
         ]
       }
     },
     {
+      "text": "customRdd.toDF().show()\n",
       "user": "anonymous",
+      "dateUpdated": "2021-02-04T17:56:01+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -267,30 +178,47 @@
         "forms": {}
       },
       "apps": [],
-      "runtimeInfos": {},
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=132",
+              "$$hashKey": "object:3638"
+            },
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=133",
+              "$$hashKey": "object:3639"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1612452346721_565581164",
-      "id": "paragraph_1612452346721_565581164",
-      "dateCreated": "2021-02-04T15:25:46+0000",
-      "status": "ERROR",
-      "focus": true,
-      "$$hashKey": "object:745",
-      "text": "sc.loadFromMongoDB(ReadConfig(Map(\"uri\" -> \"mongodb://mongo:27017/sth_test.sth_x002f\"))) // Uses the ReadConfig\n\n",
-      "dateUpdated": "2021-02-04T15:26:12+0000",
-      "dateFinished": "2021-02-04T15:26:12+0000",
-      "dateStarted": "2021-02-04T15:26:12+0000",
+      "jobName": "paragraph_1612460567660_1783161529",
+      "id": "paragraph_1612460567660_1783161529",
+      "dateCreated": "2021-02-04T17:42:47+0000",
+      "dateStarted": "2021-02-04T17:56:01+0000",
+      "dateFinished": "2021-02-04T17:56:02+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:2915",
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "<console>:55: \u001b[31merror: \u001b[0mnot found: value ReadConfig\n       sc.loadFromMongoDB(ReadConfig(Map(\"uri\" -> \"mongodb://mongo:27017/sth_test.sth_x002f\"))) // Uses the ReadConfig\n                          ^\n"
+            "data": "+--------------------+-----------+--------+---------+--------+----------+--------------------+\n|                 _id|   attrName|attrType|attrValue|entityId|entityType|            recvTime|\n+--------------------+-----------+--------+---------+--------+----------+--------------------+\n|[601c2bd12ab79c00...|temperature|   Float|       30|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bd12ab79c00...|   pressure|   Float|     1548|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bd12ab79c00...|temperature|   Float|       38|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bd12ab79c00...|   pressure|   Float|     3032|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bd62ab79c00...|temperature|   Float|       24|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bd62ab79c00...|   pressure|   Float|     2256|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bdb2ab79c00...|temperature|   Float|       37|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bdb2ab79c00...|   pressure|   Float|     2100|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2be02ab79c00...|temperature|   Float|       22|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2be02ab79c00...|   pressure|   Float|     1322|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2be52ab79c00...|temperature|   Float|       50|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2be52ab79c00...|   pressure|   Float|     2410|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2be92ab79c00...|temperature|   Float|       51|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2be92ab79c00...|   pressure|   Float|      748|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bee2ab79c00...|temperature|   Float|       40|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bee2ab79c00...|   pressure|   Float|     1158|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bf32ab79c00...|temperature|   Float|       37|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bf32ab79c00...|   pressure|   Float|     1979|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bf82ab79c00...|temperature|   Float|       36|   Room1|      Room|2021-02-04 17:16:...|\n|[601c2bf82ab79c00...|   pressure|   Float|      959|   Room1|      Room|2021-02-04 17:16:...|\n+--------------------+-----------+--------+---------+--------+----------+--------------------+\nonly showing top 20 rows\n\n"
           }
         ]
       }
     },
     {
+      "text": "customRdd.toDF().collect.filter(a=>a(1)==\"temperature\").foreach(doc=>{\n     z.angularBind(\"newTemp\", doc(3)) \n})\n",
       "user": "anonymous",
+      "dateUpdated": "2021-02-04T17:56:07+0000",
       "config": {
         "colWidth": 12,
         "fontSize": 9,
@@ -309,28 +237,111 @@
         "forms": {}
       },
       "apps": [],
-      "runtimeInfos": {},
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=134",
+              "$$hashKey": "object:4644"
+            },
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=135",
+              "$$hashKey": "object:4645"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "progressUpdateIntervalMs": 500,
-      "jobName": "paragraph_1612452372449_314002320",
-      "id": "paragraph_1612452372449_314002320",
-      "dateCreated": "2021-02-04T15:26:12+0000",
-      "status": "READY",
-      "focus": true,
-      "$$hashKey": "object:845"
+      "jobName": "paragraph_1612460599936_1097561842",
+      "id": "paragraph_1612460599936_1097561842",
+      "dateCreated": "2021-02-04T17:43:19+0000",
+      "dateStarted": "2021-02-04T17:56:07+0000",
+      "dateFinished": "2021-02-04T17:56:08+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:2916",
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      }
+    },
+    {
+      "text": "",
+      "user": "anonymous",
+      "dateUpdated": "2021-02-04T17:55:13+0000",
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=106",
+              "$$hashKey": "object:3328"
+            },
+            {
+              "jobUrl": "http://6f28a905062e:4040/jobs/job?id=107",
+              "$$hashKey": "object:3329"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1612460611433_1079388946",
+      "id": "paragraph_1612460611433_1079388946",
+      "dateCreated": "2021-02-04T17:43:31+0000",
+      "dateStarted": "2021-02-04T17:52:08+0000",
+      "dateFinished": "2021-02-04T17:52:09+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:2917"
     }
   ],
   "name": "ExampleMongo",
-  "id": "2FVWWPMXY",
+  "id": "2FWVKW6BW",
   "defaultInterpreterGroup": "spark",
   "version": "0.9.0-preview2",
   "noteParams": {},
   "noteForms": {},
-  "angularObjects": {},
+  "angularObjects": {
+    "spark-shared_process": [
+      {
+        "name": "newTemp",
+        "object": "27",
+        "noteId": "2FWVKW6BW"
+      }
+    ]
+  },
   "config": {
     "isZeppelinNotebookCronEnable": false,
     "looknfeel": "default",
     "personalizedMode": "false"
   },
-  "info": {},
+  "info": {
+    "isRunning": false
+  },
   "path": "/ExampleMongo"
 }
