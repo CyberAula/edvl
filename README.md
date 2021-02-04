@@ -34,3 +34,13 @@ docker-compose up
 * Open the notebook "ExamplePlotCSV.zpln" in the directory ``notebook`` of this repository
 
 * Run one by one each of the chunks in the notebook
+
+## MongoSpark example with Scala
+
+* Open browser in http://localhost:8079
+
+* Click "Import note". Pick a name and choose the "Select JSON File/IPYNB File" option
+
+* Open the notebook "ExampleMongo.zpln" in the directory ``notebook`` of this repository
+
+* Run one by one each of the chunks in the notebook
