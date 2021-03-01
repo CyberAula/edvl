@@ -66,8 +66,10 @@ services:
       - "8079:8080"
       - "9003:9001"
     volumes: 
+      - ./conf:/zeppelin/conf
       - ./dependencies:/zeppelin/external-jars
       - ./prediction-job:/prediction-job
+      - ./notebook:/zeppelin/notebook/FIWARE
     volumes_from: 
       - spark-master:ro
     environment:
