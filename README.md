@@ -1,9 +1,20 @@
 #  Educational Data Virtual Lab (EDVL) 
 
-The Educational Data Virtual Lab (EDVL) is a component of the ADA project that will be used for the delivery of the practical and hands-on part of the Urban Mobility Data Science courses. 
-It is based on the European FIWARE platform, in which the specific components of Data Science applied to Urban Mobility will be integrated. 
-Users will be able to analyze open data sets (anonymized) and also real data from companies.
+The **Educational Data Virtual Lab** (EDVL) is a component of the **ADA** project that will be used for the delivery of the practical and hands-on part of the Urban Mobility Data Science courses. 
 
+It is based on  **Apache Zeppelin** and the European **FIWARE** platform, in which the specific components of Data Science applied to Urban Mobility will be integrated. 
+
+**Apache Zeppelin** is a new and upcoming web-based notebook that enables data-driven, interactive data analytics and collaborative documents with SQL, Scala and more. It provides data exploration, visualization, sharing and collaboration features  and supports a plethora of languages and technologies.
+
+**FIWARE** is a curated framework of open source components to accelerate the development of smart solutions, which enable the connection to IoT with Context Information Management and Big Data services in the Cloud. Furthermore, it provides standard APIs for data management and exchange, as well as harmonised data models.
+
+## Requirements
+
+* Docker and Docker-compose
+* Curl 
+
+
+## Installation
 
 * Clone this project
 ```shell
@@ -16,7 +27,9 @@ cd edvl
 docker-compose up
 ```
 
-## Spark Streaming example with Scala
+## Examples
+
+### Spark Streaming example with Scala
 
 * Open browser in http://localhost:8079
 
@@ -29,7 +42,7 @@ docker-compose up
 * Run one by one each of the chunks in the notebook to see how  the temperature updates in the graph
 
 
-## MongoSpark example with Scala
+### MongoSpark example with Scala
 
 * Open browser in http://localhost:8079
 
@@ -39,7 +52,7 @@ docker-compose up
 
 * Run one by one each of the chunks in the notebook to list and plot the data from the database
 
-## PySpark batch example with pandas
+### PySpark batch example with pandas
 
 * Open browser in http://localhost:8079
 
