@@ -1,4 +1,9 @@
-# EDVL
+#  Educational Data Virtual Lab (EDVL) 
+
+The Educational Data Virtual Lab (EDVL) is a component of the ADA project that will be used for the delivery of the practical and hands-on part of the Urban Mobility Data Science courses. 
+It is based on the European FIWARE platform, in which the specific components of Data Science applied to Urban Mobility will be integrated. 
+Users will be able to analyze open data sets (anonymized) and also real data from companies.
+
 
 * Clone this project
 ```shell
