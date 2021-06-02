@@ -1,2 +1,4 @@
 requests
 pathlib
+pymongo
+requests

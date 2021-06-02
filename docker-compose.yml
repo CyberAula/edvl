@@ -105,10 +105,39 @@ services:
       - DRACO_ENDPOINT=draco:9090
     networks:
       - fiware
-    command: bash -c "sleep 120 && pip install --no-cache-dir -r /entities/requirements.txt && sh /entities/createPredictionEntities.sh && python /entities/runDraco.py && sh /entities/subscribeRoomTicket.sh"
+    command: bash -c "sleep 120 && pip install --no-cache-dir -r /entities/requirements.txt && sh /entities/createPredictionEntities.sh && sh /entities/create_entity.sh && sh /entities/subscribe.sh && python /entities/runDraco.py && sh /entities/subscribeRoomTicket.sh"
     volumes:
       - ./entities:/entities
 
-  
+  mongo-ds:
+    image: ging/mongo-dataset
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - vol-mongo:/data
+    networks:
+      - fiware
+
+  dataset:
+    image: ging/dataset
+    restart: always
+    links:
+      - mongo-ds
+    environment:
+      - ORION_ENDPOINT=orion:1026
+      - MONGO_URI=mongodb://mongo-ds:27017/
+      - START_DATE=2016-01-14
+      - END_DATE=2016-01-15
+      - FRECUENCY=5
+    depends_on:
+      - mongo-ds
+      - orion
+    networks:
+      - fiware 
+
 networks:
   fiware:
+
+volumes:
+  vol-mongo:
