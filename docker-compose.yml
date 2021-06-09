@@ -60,14 +60,14 @@ services:
         - fiware
 
   zeppelin-spark: 
-    image: apache/zeppelin:0.9.0
+    image: ging/zeppelin
     user: 'root'
     container_name: zeppelin-spark
     ports: 
       - "8079:8080"
       - "9003:9001"
     volumes: 
-      - ./conf:/zeppelin/conf
+      - ./conf:/opt/zeppelin/conf
       - ./dependencies:/zeppelin/external-jars
       - ./prediction-job:/prediction-job
       - ./notebook:/zeppelin/notebook/FIWARE

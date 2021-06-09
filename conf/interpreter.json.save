@@ -1558,21 +1558,10 @@
         }
       ],
       "dependencies": [
-        {
-          "groupArtifactVersion": "org.apache.commons:commons-lang3:3.2",
-          "local": false
-        },
-        {
-          "groupArtifactVersion": "commons-io:commons-io:2.6",
-          "local": false
-        }
-      ],
+],
       "option": {
         "remote": true,
-        "host": "mongo-ds",
-        "port": 27017,
-        "perNote": "shared",
-        "perUser": "shared",
+        "port": -1,
         "isExistingProcess": false,
         "setPermission": false,
         "owners": [],
@@ -2796,13 +2785,13 @@
           "name": "cassandra.format.float_precision",
           "value": "5",
           "type": "number",
-          "description": "Precision for formatting of float values"
+          "description": "Precision for formatting of float columns"
         },
         "cassandra.format.double_precision": {
           "name": "cassandra.format.double_precision",
           "value": "12",
           "type": "number",
-          "description": "Precision for formatting of double values"
+          "description": "Precision for formatting of double columns"
         }
       },
       "status": "READY",
@@ -2956,27 +2945,6 @@
       "id": "central",
       "type": "default",
       "url": "https://repo1.maven.org/maven2/",
-      "host": "repo1.maven.org",
-      "protocol": "https",
-      "releasePolicy": {
-        "enabled": true,
-        "updatePolicy": "daily",
-        "checksumPolicy": "warn"
-      },
-      "snapshotPolicy": {
-        "enabled": true,
-        "updatePolicy": "daily",
-        "checksumPolicy": "warn"
-      },
-      "mirroredRepositories": [],
-      "repositoryManager": false
-    },
-    {
-      "id": "local",
-      "type": "default",
-      "url": "file:///root/.m2/repository",
-      "host": "",
-      "protocol": "file",
       "releasePolicy": {
         "enabled": true,
         "updatePolicy": "daily",
