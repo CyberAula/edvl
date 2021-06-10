@@ -1,0 +1,1388 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%md\n\n<h1>\n<img src=\"https://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Logos/UPM/Logotipo/LOGOTIPO%20color%20JPG%20p.png\" alt=\"drawing\" style=\"width:75px; float:left;\"/>\n<span style=\"line-height: 55px;padding-left: 20px;\">EDVL 4 Retail</span></h1>\n</h1>\n<p>\nThis notebook will help you get started with EDVL. We will explore a dataset using Mongo queries and the dynamic visualizations offered by Apache Zeppelin. \nWe will also explore real-time data using Spark Streaming and Angular visualizations\n</p>",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-10T07:33:29+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h1>\n<img src=\"https://www.upm.es/sfs/Rectorado/Gabinete%20del%20Rector/Logos/UPM/Logotipo/LOGOTIPO%20color%20JPG%20p.png\" alt=\"drawing\" style=\"width:75px; float:left;\"/>\n<span style=\"line-height: 55px;padding-left: 20px;\">EDVL 4 Retail</span></h1>\n</h1>\n<p>\nThis notebook will help you get started with EDVL. We will explore a dataset using Mongo queries and the dynamic visualizations offered by Apache Zeppelin. \nWe will also explore real-time data using Spark Streaming and Angular visualizations\n</p>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831413_146755214",
+      "id": "paragraph_1623252185633_1415694996",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-09T19:44:14+0000",
+      "dateFinished": "2021-06-09T19:44:14+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:29855"
+    },
+    {
+      "text": "%md\n## Getting started\n\nWe will first take a look at what the database contains. For that, run the next chunk of code by clicking the play button next to it.\n\nAs we can see, the dataset includes several columns:\n * **\\_id**: Unique identifier for a purchase\n * **mall**: Unique identifier for the store in which the purchase took place\n * **date**: Date in which the purchase took place\n * **items**: List of items in a specific purchase:\n   * **net_am**: Price of the items\n   * **desc**: Item description\n   * **n_unit**: Number of items of the same type bought together\n * **client**: Unique identifier for the client",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-10T07:46:42+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Getting started</h2>\n<p>We will first take a look at what the database contains. For that, run the next chunk of code by clicking the play button next to it.</p>\n<p>As we can see, the dataset includes several columns:</p>\n<ul>\n<li><strong>_id</strong>: Unique identifier for a purchase</li>\n<li><strong>mall</strong>: Unique identifier for the store in which the purchase took place</li>\n<li><strong>date</strong>: Date in which the purchase took place</li>\n<li><strong>items</strong>: List of items in a specific purchase:\n<ul>\n<li><strong>net_am</strong>: Price of the items</li>\n<li><strong>desc</strong>: Item description</li>\n<li><strong>n_unit</strong>: Number of items of the same type bought together</li>\n</ul>\n</li>\n<li><strong>client</strong>: Unique identifier for the client</li>\n</ul>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831414_817983724",
+      "id": "paragraph_1623243017883_978134568",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T07:46:42+0000",
+      "dateFinished": "2021-06-10T07:46:42+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29856"
+    },
+    {
+      "text": "%mongodb\ndb.tickets.aggregate({ $limit: 100 }).table()",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T09:10:08+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "javascript",
+          "editOnDblClick": false,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/javascript",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "_id0",
+                        "visible": false,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "mall1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "date2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0,
+                          "direction": "asc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "items3",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "client4",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_id": "string",
+                      "mall": "string",
+                      "date": "string",
+                      "items": "string",
+                      "client": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": true,
+                    "showAggregationFooter": true
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "rotate",
+                  "style": "stack"
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "rotate",
+                  "stacked": false
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "rotate"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "date",
+                  "index": 2,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [
+                {
+                  "name": "mall",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "items",
+                  "index": 3,
+                  "aggr": "count"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831414_1540225019",
+      "id": "paragraph_1623240089574_1229780649",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T09:10:08+0000",
+      "dateFinished": "2021-06-10T09:10:09+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29857"
+    },
+    {
+      "text": "%md\n## Daily purchases\nLet's now investigate what is the distribution of purchases across the month and try to find some patterns\n\nFor that, run the next chunk if you haven't already and choose the bar chart visualization (second button).\n\nWe can see that the purchase numbers do not vary a lot along the month. We do notice some higher numbers at the beginning of the month (probably pay day), and some gaps every other five days (most probably weekends).\n\n> If you can't see the result correctly hit the settings option and make sure the *keys*  area includes \"_id.saleDayOfMonth\" and the *values* area includes \"purchases SUM\". If that is not the case, drag the fields to their corresponding area.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-10T07:12:35+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Daily purchases</h2>\n<p>Let&rsquo;s now investigate what is the distribution of purchases across the month and try to find some patterns</p>\n<p>For that, run the next chunk if you haven&rsquo;t already and choose the bar chart visualization (second button).</p>\n<p>We can see that the purchase numbers do not vary a lot along the month. We do notice some higher numbers at the beginning of the month (probably pay day), and some gaps every other five days (most probably weekends).</p>\n<blockquote>\n<p>If you can&rsquo;t see the result correctly hit the settings option and make sure the <em>keys</em>  area includes &ldquo;_id.saleDayOfMonth&rdquo; and the <em>values</em> area includes &ldquo;purchases SUM&rdquo;. If that is not the case, drag the fields to their corresponding area.</p>\n</blockquote>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831416_1181146037",
+      "id": "paragraph_1623243285149_560225666",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T07:12:35+0000",
+      "dateFinished": "2021-06-10T07:12:35+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29858"
+    },
+    {
+      "text": "%mongodb\ndb.tickets.aggregate([\n   {$group: { _id: { make : \"$make\", saleDayOfMonth : { $dayOfMonth : \"$date\" } }, purchases : { $sum : 1 } } },\n]).table()",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T08:04:46+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "javascript",
+          "editOnDblClick": false,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/javascript",
+        "fontSize": 9,
+        "editorHide": false,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "multiBarChart",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_id.saleDayOfMonth": "string",
+                      "purchases": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "_id.saleDayOfMonth",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "purchases",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831416_735921088",
+      "id": "paragraph_1623242376331_85852291",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T08:04:46+0000",
+      "dateFinished": "2021-06-10T08:04:46+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29859"
+    },
+    {
+      "text": "%md\n## Hourly purchases\n\nMaybe if we analyze the hourly purchases we will get a bit more information.\n\nRun the next chunk if you haven't already and choose the area chart visualization (fourth button).\n\nWe can see that the number of purchases changes a lot during the day. The peak hour is just before lunch (13h) and then there's another peak at 19h. This information sure is helpful to determine how meny checkout lines need to be open.\n\n> If you can't see the result correctly hit the settings option and make sure the *keys*  area includes \"_id.hour\" and the *values* area includes \"purchases SUM\". If that is not the case, drag the fields to their corresponding area.\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-09T19:44:16+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Hourly purchases</h2>\n<p>Maybe if we analyze the hourly purchases we will get a bit more information.</p>\n<p>Run the next chunk if you haven&rsquo;t already and choose the area chart visualization (fourth button).</p>\n<p>We can see that the number of purchases changes a lot during the day. The peak hour is just before lunch (13h) and then there&rsquo;s another peak at 19h. This information sure is helpful to determine how meny checkout lines need to be open.</p>\n<blockquote>\n<p>If you can&rsquo;t see the result correctly hit the settings option and make sure the <em>keys</em>  area includes &ldquo;_id.hour&rdquo; and the <em>values</em> area includes &ldquo;purchases SUM&rdquo;. If that is not the case, drag the fields to their corresponding area.</p>\n</blockquote>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831416_802407141",
+      "id": "paragraph_1623244165783_1434989516",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-09T19:44:16+0000",
+      "dateFinished": "2021-06-09T19:44:16+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29860"
+    },
+    {
+      "text": "%mongodb\ndb.tickets.aggregate([\n   {$group: { _id: { make : \"$make\", hour : { $hour : \"$date\" }, mall:\"$mall\" }, purchases : { $sum : 1 } } },\n]).table()\n",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T09:12:38+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "javascript",
+          "editOnDblClick": false,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/javascript",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "stackedAreaChart",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "_id.hour0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "purchases1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_id.hour": "string",
+                      "purchases": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "rotate",
+                  "style": "stack"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "scatterChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "_id.hour",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "purchases",
+                  "index": 2,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831416_1760040735",
+      "id": "paragraph_1623242646271_1283169311",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T09:12:17+0000",
+      "dateFinished": "2021-06-10T09:12:18+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29861"
+    },
+    {
+      "text": "%md\nNow try to see if there is any difference by mall. For that, open the settings of the previous chunk and drag the \"_id.mall\" tag to the *group* area.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-09T19:44:16+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<p>Now try to see if there is any difference by mall. For that, open the settings of the previous chunk and drag the &ldquo;_id.mall&rdquo; tag to the <em>group</em> area.</p>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623267227726_1895491842",
+      "id": "paragraph_1623267227726_1895491842",
+      "dateCreated": "2021-06-09T19:33:47+0000",
+      "dateStarted": "2021-06-09T19:44:16+0000",
+      "dateFinished": "2021-06-09T19:44:16+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29862"
+    },
+    {
+      "text": "%md\n## Comparing stores\n\nAnother thing we can try to find is which store is more successful.\n\nFor that, run the next chunk if you haven't already and choose the pie chart visualization (third button).\n\nWe can see that the purchase numbers are almost the same for the two stores, so we should keep both of them open for business.\n\n> If you can't see the result correctly hit the settings option and make sure the *keys*  area includes \"_id\" and the *values* area includes \"purchases SUM\". If that is not the case, drag the fields to their corresponding area.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-09T19:44:17+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Comparing stores</h2>\n<p>Another thing we can try to find is which store is more successful.</p>\n<p>For that, run the next chunk if you haven&rsquo;t already and choose the pie chart visualization (third button).</p>\n<p>We can see that the purchase numbers are almost the same for the two stores, so we should keep both of them open for business.</p>\n<blockquote>\n<p>If you can&rsquo;t see the result correctly hit the settings option and make sure the <em>keys</em>  area includes &ldquo;_id&rdquo; and the <em>values</em> area includes &ldquo;purchases SUM&rdquo;. If that is not the case, drag the fields to their corresponding area.</p>\n</blockquote>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831417_1421592656",
+      "id": "paragraph_1623245709495_41915452",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-09T19:44:17+0000",
+      "dateFinished": "2021-06-09T19:44:17+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29863"
+    },
+    {
+      "text": "%mongodb\ndb.tickets.aggregate([\n    { $group: { _id: \"$mall\", purchases: { $sum: 1 } } },\n]).table()",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T08:05:23+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "javascript",
+          "editOnDblClick": false,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/javascript",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_id": "string",
+                      "purchases": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": true,
+                    "showPagination": true,
+                    "showAggregationFooter": true
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "_id",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "purchases",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831417_1481053777",
+      "id": "paragraph_1623236315402_1418758341",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T08:05:23+0000",
+      "dateFinished": "2021-06-10T08:05:23+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29864"
+    },
+    {
+      "text": "%md\n## Most popular products\n\nWhich are the top sold products?\n\nRun the next chunk if you haven't already and choose the pie chart visualization (third button)\n\nThe plastic bag is the top sold product, followed by beer and milk.\n\n> If you can't see the result correctly hit the settings option and make sure the *keys*  area includes \"_id\" and the *values* area includes \"count SUM\". If that is not the case, drag the fields to their corresponding area.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-09T19:44:17+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Most popular products</h2>\n<p>Which are the top sold products?</p>\n<p>Run the next chunk if you haven&rsquo;t already and choose the pie chart visualization (third button)</p>\n<p>The plastic bag is the top sold product, followed by beer and milk.</p>\n<blockquote>\n<p>If you can&rsquo;t see the result correctly hit the settings option and make sure the <em>keys</em>  area includes &ldquo;_id&rdquo; and the <em>values</em> area includes &ldquo;count SUM&rdquo;. If that is not the case, drag the fields to their corresponding area.</p>\n</blockquote>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831417_241511784",
+      "id": "paragraph_1623248331474_108234351",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-09T19:44:17+0000",
+      "dateFinished": "2021-06-09T19:44:17+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29865"
+    },
+    {
+      "text": "%mongodb\ndb.tickets.aggregate([\n    { $unwind: '$items'},\n    { $group: { _id: \"$items.desc\", count: { $sum: \"$items.n_unit\" } } },\n    { $sort: { count: -1 } },\n    { $limit: 10}\n]).table()",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T09:11:31+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "javascript",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/javascript",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "pieChart",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_id": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": true,
+                    "showPagination": true,
+                    "showAggregationFooter": true
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-90"
+                  },
+                  "xLabelStatus": "rotate",
+                  "stacked": true
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "style": "stack"
+                },
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "_id",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "count",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831417_208875736",
+      "id": "paragraph_1623246379927_1095215781",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T09:11:31+0000",
+      "dateFinished": "2021-06-10T09:11:39+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29866"
+    },
+    {
+      "text": "%md\n## Top 10 clients\n\nWho are the customers who spend the most?\n\nRun the next chunk if you haven't already and choose the table visualization (first button)\n\nThe top customer spends almost 1000€ on average! It is probably a business and not a person",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T09:11:33+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Top 10 clients</h2>\n<p>Who are the customers who spend the most?</p>\n<p>Run the next chunk if you haven&rsquo;t already and choose the table visualization (first button)</p>\n<p>The top customer spends almost 1000€ on average! It is probably a business and not a person</p>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831417_514926446",
+      "id": "paragraph_1623251290436_1296347095",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T09:11:33+0000",
+      "dateFinished": "2021-06-10T09:11:34+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29867"
+    },
+    {
+      "text": "%mongodb\ndb.tickets.aggregate([\n    { $project: { client: 1, total: { $sum: \"$items.net_am\" }  } },\n    { $group: { _id: \"$client\", avg_purchase: { $avg: \"$total\" } } },\n    { $sort: { avg_purchase: -1 } },\n    { $limit: 10}\n]).table()",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T09:11:28+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "javascript",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/javascript",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_id": "string",
+                      "avg_purchase": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831417_1467972954",
+      "id": "paragraph_1623248474691_1483365265",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T09:11:28+0000",
+      "dateFinished": "2021-06-10T09:11:31+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29868"
+    },
+    {
+      "text": "%md\n## Personalized marketing\n\nLet's now look at a specific customer to see what we can infer from them. \n\nRun the next chunk if you haven't already and choose the line chart visualization (fifth button).\n\nWe can see that this customer only shops in the evening, probably because he/she works in the mornings. Thus, if we want to send some special offer, it should be during the hours he/she can attend the store.\n\n> If you can't see the result correctly hit the settings option and make sure the *keys*  area includes \"_id.hour\" and the *values* area includes \"purchases SUM\". If that is not the case, drag the fields to their corresponding area.\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-10T07:14:03+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Personalized marketing</h2>\n<p>Let&rsquo;s now look at a specific customer to see what we can infer from them.</p>\n<p>Run the next chunk if you haven&rsquo;t already and choose the line chart visualization (fifth button).</p>\n<p>We can see that this customer only shops in the evening, probably because he/she works in the mornings. Thus, if we want to send some special offer, it should be during the hours he/she can attend the store.</p>\n<blockquote>\n<p>If you can&rsquo;t see the result correctly hit the settings option and make sure the <em>keys</em>  area includes &ldquo;_id.hour&rdquo; and the <em>values</em> area includes &ldquo;purchases SUM&rdquo;. If that is not the case, drag the fields to their corresponding area.</p>\n</blockquote>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831417_1236690970",
+      "id": "paragraph_1623246119869_1275789395",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T07:14:03+0000",
+      "dateFinished": "2021-06-10T07:14:03+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29869"
+    },
+    {
+      "text": "%mongodb\ndb.tickets.aggregate([{ $match: { client: 77055638528 } },\n {$group: {_id: { make : \"$make\", hour : { $hour : \"$date\" } }, purchases : { $sum : 1 } } },\n]).table()",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T09:12:01+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "javascript",
+          "editOnDblClick": false,
+          "completionKey": "TAB"
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/javascript",
+        "fontSize": 9,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "lineChart",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "_id0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "mall1",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "date2",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "items3",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "client4",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_id.hour": "string",
+                      "_id.mall": "string",
+                      "purchases": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": true,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "rotate",
+                  "style": "stack"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "lineWithFocus": false,
+                  "forceY": false,
+                  "isDateFormat": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "rotate",
+                  "stacked": true
+                },
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "_id.hour",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "purchases",
+                  "index": 1,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623252831417_658073047",
+      "id": "paragraph_1623236350119_657336312",
+      "dateCreated": "2021-06-09T15:33:51+0000",
+      "dateStarted": "2021-06-10T09:12:01+0000",
+      "dateFinished": "2021-06-10T09:12:01+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29870"
+    },
+    {
+      "text": "%md\n## Real-time monitoring\n\nLastly, we would like to see the real-time evolution of purchases, so we can quickly react and open more checkout lines. \n\nRun the next two chunks in order to see how purchases evolve over time in real-time!",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-09T19:58:17+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Real-time monitoring</h2>\n<p>Lastly, we would like to see the real-time evolution of purchases, so we can quickly react and open more checkout lines.</p>\n<p>Run the next two chunks in order to see how purchases evolve over time in real-time!</p>\n\n</div>"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623253077818_548213808",
+      "id": "paragraph_1623253077818_548213808",
+      "dateCreated": "2021-06-09T15:37:57+0000",
+      "dateStarted": "2021-06-09T19:58:17+0000",
+      "dateFinished": "2021-06-09T19:58:17+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29871"
+    },
+    {
+      "title": "Real-time purchases",
+      "text": "%angular\n\n<script src=\"https://cdn.jsdelivr.net/npm/chart.js@2.8.0\"></script>\n<script type=\"text/javascript\">\n    if (window.watcher)window.watcher()\n    if (window.watcher2)window.watcher2()\n    var ctx = document.getElementById('myChart').getContext('2d');\n    var chart = new Chart(ctx, {\n        type: 'line',\n        data: {\n            labels: [],\n            datasets: [{\n                label: 'Number of items purchased',\n                backgroundColor: 'rgba(255, 99, 132, .35)',\n                borderColor: 'rgb(255, 99, 132)',\n                data: []\n            }]\n        },\n        options: {}\n    });\n  \n    var element = $('#someId');\n    var scope = angular.element(element.parent('.ng-scope')).scope().compiledScope;\n    scope.data = []\n    window.watcher = scope.$watch('items', (newVal, oldVal) => {\n        scope.data.push(newVal)\n        var currentDate = new Date()\n        chart.data.labels.push(currentDate.getHours().toString().padStart(2,\"0\") + \":\" + currentDate.getMinutes().toString().padStart(2,\"0\") + \":\" + currentDate.getSeconds().toString().padStart(2,\"0\"));\n        chart.data.datasets.forEach((dataset) => {\n            dataset.data.push(newVal);\n        });\n        chart.update();\n    });\n    window.watcher2 = scope.$watch('item', (newVal, oldVal) => {\n        if (newVal != oldVal)  document.getElementById(\"list-of-products\").innerHTML += \"<div>\"+newVal+\"</div>\"\n    });\n</script>\n<div id=\"someId\" style=\"display:none;\">\n    <span ng-repeat=\"ditem in data track by $index\">{{ditem}}-</span>\n</div>\n\n<canvas id=\"myChart\" style=\"width: 500px; height: 200px;\"></canvas>\n<h4>List of products</h4>\n<div style=\"max-height: 200px;overflow:auto; \" id=\"list-of-products\">\n</div>",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T09:10:40+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 10,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9,
+        "editorHide": true,
+        "title": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 286,
+              "optionOpen": false
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623253140312_713985224",
+      "id": "paragraph_1623253140312_713985224",
+      "dateCreated": "2021-06-09T15:39:00+0000",
+      "dateStarted": "2021-06-10T08:06:11+0000",
+      "dateFinished": "2021-06-10T08:06:11+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29872"
+    },
+    {
+      "title": "Run this chunk (40 seconds)",
+      "text": "%spark\n// z.run(\"1623253140312_713985224\")\nimport org.apache.spark._\nimport org.apache.spark.streaming.{Seconds, StreamingContext}\nimport org.fiware.cosmos.orion.spark.connector._\nimport org.apache.spark.sql.{DataFrame, SparkSession}\nval ssc = new StreamingContext(sc, Seconds(5))\nval eventStream = ssc.receiverStream(new OrionReceiver(List(\"ticket\")))\n\nval entities = eventStream.\n  flatMap(event => event.entities)\n\n\nentities.\n  map(entity => entity.attrs(\"items\").value.asInstanceOf[List[Map[String,Any]]]).\n  map(cart => cart.length).\n  reduce(_ + _).\n  foreachRDD(blockRDD => {\n    blockRDD.collect().foreach(item => {\n        // println(\"# of items \" + item)\n        z.angularBind(\"items\", item) \n    })\n  })\n\n\n\n\nentities.\n  flatMap(entity => entity.attrs(\"items\").value.asInstanceOf[List[Map[String,Any]]]).\n  map(item => item.getOrElse(\"desc\",\"\")).\n  foreachRDD(blockRDD => {\n    blockRDD.collect().foreach(item => {\n        // println(\"item \" + item)\n        z.angularBind(\"item\", item) \n    })\n  })\nssc.start()\nssc.awaitTerminationOrTimeout((40*1000).toLong)\nssc.stop(false)\n",
+      "user": "admin",
+      "dateUpdated": "2021-06-10T08:20:51+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 2,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9,
+        "editorHide": true,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1623253070489_423385211",
+      "id": "paragraph_1623253070489_423385211",
+      "dateCreated": "2021-06-09T15:37:50+0000",
+      "dateStarted": "2021-06-10T08:06:14+0000",
+      "dateFinished": "2021-06-10T08:07:05+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:29873"
+    }
+  ],
+  "name": "EDVL4Retail",
+  "id": "2GA17JD5F",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {},
+  "path": "/EDVL4Retail"
+}
