@@ -971,25 +971,25 @@
         },
         "spark.driver.cores": {
           "name": "spark.driver.cores",
-          "value": "1",
+          "value": "4",
           "type": "number",
           "description": "Number of cores to use for the driver process, only in cluster mode."
         },
         "spark.driver.memory": {
           "name": "spark.driver.memory",
-          "value": "1g",
+          "value": "2g",
           "type": "string",
           "description": "Amount of memory to use for the driver process, i.e. where SparkContext is initialized, in the same format as JVM memory strings with a size unit suffix (\"k\", \"m\", \"g\" or \"t\") (e.g. 512m, 2g)."
         },
         "spark.executor.cores": {
           "name": "spark.executor.cores",
-          "value": "1",
+          "value": "4",
           "type": "number",
           "description": "The number of cores to use on each executor"
         },
         "spark.executor.memory": {
           "name": "spark.executor.memory",
-          "value": "1g",
+          "value": "2g",
           "type": "string",
           "description": "Executor memory per worker instance. ex) 512m, 32g"
         },

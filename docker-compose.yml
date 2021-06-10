@@ -64,7 +64,7 @@ services:
     user: 'root'
     container_name: zeppelin-spark
     ports: 
-      - "8079:8080"
+      - "80:8080"
       - "9003:9001"
     volumes: 
       - ./conf:/opt/zeppelin/conf
