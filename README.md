@@ -11,8 +11,6 @@ It is based on  **Apache Zeppelin** and the European **FIWARE** platform, in whi
 ## Requirements
 
 * Docker and Docker-compose
-* Curl 
-
 
 ## Installation
 
@@ -27,37 +25,42 @@ cd edvl
 docker-compose up
 ```
 
-## Examples
-
-### Spark Streaming example with Scala
-
-* Open browser in http://localhost:8079
-
-* Click "Import note". Pick a name and choose the "Select JSON File/IPYNB File" option
-
-* Open the notebook "ExampleStreamingGraph.zpln" in the directory ``notebook`` of this repository
-
-* In a terminal, simulate new data arriving to Orion  by running```sh simulated_data_entity.sh```
-
-* Run one by one each of the chunks in the notebook to see how  the temperature updates in the graph
+* Open the browser in http://localhost:8079 (credentials: admin/password1, user1/password2)
 
 
-### MongoSpark example with Scala
+## Example notebooks
 
-* Open browser in http://localhost:8079
+EDVL comes with a curated set of notebooks that can be use to get started in data science training. They are available in the ``notebook``directory. To run any of the notebooks you just need to:
 
 * Click "Import note". Pick a name and choose the "Select JSON File/IPYNB File" option
 
-* Open the notebook "ExampleMongo.zpln" in the directory ``notebook`` of this repository
+* Choose the notebook that you want to explore from the ``notebook`` directory
 
-* Run one by one each of the chunks in the notebook to list and plot the data from the database
+* Open the notebook and run all of the chunks one by one in order.
 
-### PySpark batch example with pandas
 
-* Open browser in http://localhost:8079
+Below is a description of the notebooks available.
 
-* Click "Import note". Pick a name and choose the "Select JSON File/IPYNB File" option
+### MongoDB with native visualizations
 
-* Open the notebook "ExamplePlotCSV.zpln" in the directory ``notebook`` of this repository
+Notebook ``1. ExampleMongo.zpln`` showcases Apache Zeppelin's native visualizations when querying a Mongo database. It can be seen how data can be explored in an interactive way through many graphs and visualizations.
 
-* Run one by one each of the chunks in the notebook to perform descriptive statistics and create simple visualizations of the data
+### SparkML
+
+Stepping up from mere data exploration,  notebook ``2. ExampleSparkML.zpln`` shows how EDVL can be used for the complete lifecycle of machine learning, from data acquisition and storage provided by FIWARE Generic Enablers, to model training and prediction thanks to the SparkML library.
+
+### MongoSpark with Scala
+
+Instead of directly querying a Mongo database,  notebook ``3. ExampleMongoSpark.zpln`` shows how MongoSpark can be used to query data using the Scala language, and how the data retrieved can be ploted using web visualization libraries.
+
+### Python Pandas
+
+Apache Zeppelin supports one of the most common languages for data analysis (i.e., Python). In  notebook ``4. ExamplePandas.zpln``, a common workflow of analyzing a CSV file using Python Pandas is provided.
+
+### Spark streaming
+
+Not only batch analysis is supported, but also real-time. Thanks to Spark Streaming and the FIWARE Cosmos Spark Connector, data can be analyzed as soon as it arrives from the FIWARE Context Broker and plotted in real time using web visualization libraries (``5. ExampleStreamingPrint.zpln`` and ``6. ExampleStreamingGraph.zpln``). 
+
+## Legacy Jupyter Notebook
+
+Apache Zeppelin allows to import Jupyter Notebooks and reuse existing code. This way, users who are migrating from Jupyter can resume their work immediately. An example is provided in notebok ``7. Jupyter2Zeppelin.ipynb``
