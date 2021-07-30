@@ -61,6 +61,6 @@ Apache Zeppelin supports one of the most common languages for data analysis (i.e
 
 Not only batch analysis is supported, but also real-time. Thanks to Spark Streaming and the FIWARE Cosmos Spark Connector, data can be analyzed as soon as it arrives from the FIWARE Context Broker and plotted in real time using web visualization libraries (``5. ExampleStreamingPrint.zpln`` and ``6. ExampleStreamingGraph.zpln``). 
 
-## Legacy Jupyter Notebook
+### Legacy Jupyter Notebook
 
 Apache Zeppelin allows to import Jupyter Notebooks and reuse existing code. This way, users who are migrating from Jupyter can resume their work immediately. An example is provided in notebok ``7. Jupyter2Zeppelin.ipynb``
