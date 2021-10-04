@@ -845,7 +845,7 @@
         },
         "zeppelin.python.maxResult": {
           "name": "zeppelin.python.maxResult",
-          "value": "1000",
+          "value": "40000",
           "type": "number",
           "description": "Max number of dataframe rows to display."
         },

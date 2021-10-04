@@ -15,4 +15,9 @@ apt-get install -y mongodb-org-shell
 
 WORKDIR ${Z_HOME}
 
+RUN wget https://www.ine.es/experimental/movilidad/movilidad_cotidiana_marzo_junio_2020.zip
+RUN apt-get install unzip
+RUN unzip movilidad_cotidiana_marzo_junio_2020.zip
+RUN rm movilidad_cotidiana_marzo_junio_2020.zip
+
 CMD ["bin/zeppelin.sh"]

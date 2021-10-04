@@ -1640,7 +1640,7 @@
         },
         "zeppelin.python.maxResult": {
           "name": "zeppelin.python.maxResult",
-          "value": "1000",
+          "value": "40000",
           "type": "number",
           "description": "Max number of dataframe rows to display."
         },
@@ -1722,6 +1722,8 @@
       "option": {
         "remote": true,
         "port": -1,
+        "perNote": "shared",
+        "perUser": "shared",
         "isExistingProcess": false,
         "setPermission": false,
         "owners": [],
@@ -2317,7 +2319,7 @@
         },
         "zeppelin.livy.spark.sql.maxResult": {
           "name": "zeppelin.livy.spark.sql.maxResult",
-          "value": "1000",
+          "value": "40000",
           "type": "number",
           "description": "Max number of Spark SQL result to display."
         },
