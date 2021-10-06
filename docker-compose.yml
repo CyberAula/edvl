@@ -1,28 +1,28 @@
 version: "2"
 services:
-  mongo:
-    container_name: mongo
-    image: mongo:3.6
-    command: --nojournal
-    networks:
-      - fiware
-    ports:
-      - "27018:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-  orion:
-    container_name: orion
-    image: fiware/orion
-    links:
-      - mongo
-    ports:
-      - "1026:1026"
-    command: -dbhost mongo -dbuser root -dbpwd example
-    depends_on:
-      - mongo
-    networks:
-      - fiware
+#  mongo:
+#    container_name: mongo
+#    image: mongo:3.6
+#    command: --nojournal
+#    networks:
+#      - fiware
+#    ports:
+#      - "27018:27017"
+#    environment:
+#      - MONGO_INITDB_ROOT_USERNAME=root
+#      - MONGO_INITDB_ROOT_PASSWORD=example
+#  orion:
+#    container_name: orion
+#    image: fiware/orion
+#    links:
+#      - mongo
+#    ports:
+#      - "1026:1026"
+#    command: -dbhost mongo -dbuser root -dbpwd example
+#    depends_on:
+#      - mongo
+#    networks:
+#      - fiware
   spark-master:
     image: bde2020/spark-master:2.4.4-hadoop2.7
     container_name: spark-master
@@ -40,6 +40,7 @@ services:
     volumes:
       - ./prediction-job:/prediction-job
       - /spark
+      - ./data:/data
 
   spark-worker-1:
     image: bde2020/spark-worker:2.4.4-hadoop2.7
@@ -56,6 +57,7 @@ services:
       - "NOTIFICATION_HOST=http://spark-worker-1"
     volumes:
       - ./prediction-job:/prediction-job
+      - ./data:/data
     networks:
         - fiware
 
@@ -71,6 +73,7 @@ services:
       - ./dependencies:/zeppelin/external-jars
       - ./prediction-job:/prediction-job
       - ./notebook:/zeppelin/notebook/FIWARE
+      - ./data:/data
     volumes_from: 
       - spark-master:ro
     environment:
@@ -83,58 +86,58 @@ services:
     networks:
       - fiware
 
-  draco:
-    image: ging/fiware-draco
-    container_name: draco
-    depends_on:
-      - orion
-    environment:
-      - NIFI_WEB_HTTP_PORT=9090
-    ports:
-      - "9090:9090"
-      - "5050:5050"
-    networks:
-      - fiware
+#  draco:
+#    image: ging/fiware-draco
+#    container_name: draco
+#    depends_on:
+#      - orion
+#    environment:
+#      - NIFI_WEB_HTTP_PORT=9090
+#    ports:
+#      - "9090:9090"
+#      - "5050:5050"
+#    networks:
+#      - fiware
 
-  python:
-    image: python:3
-    container_name: python
-    depends_on:
-      - draco
-    environment:
-      - DRACO_ENDPOINT=draco:9090
-    networks:
-      - fiware
-    command: bash -c "sleep 120 && pip install --no-cache-dir -r /entities/requirements.txt && sh /entities/createPredictionEntities.sh && sh /entities/create_entity.sh && sh /entities/subscribe.sh && python /entities/runDraco.py && sh /entities/subscribeRoomTicket.sh"
-    volumes:
-      - ./entities:/entities
+#  python:
+#    image: python:3
+#    container_name: python
+#    depends_on:
+#      - draco
+#    environment:
+#      - DRACO_ENDPOINT=draco:9090
+#    networks:
+#      - fiware
+#    command: bash -c "sleep 120 && pip install --no-cache-dir -r /entities/requirements.txt && sh /entities/createPredictionEntities.sh && sh /entities/create_entity.sh && sh /entities/subscribe.sh && python /entities/runDraco.py && sh /entities/subscribeRoomTicket.sh"
+#    volumes:
+#      - ./entities:/entities
 
-  mongo-ds:
-    image: ging/mongo-dataset
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - vol-mongo:/data
-    networks:
-      - fiware
+#  mongo-ds:
+#    image: ging/mongo-dataset
+#    restart: always
+#    ports:
+#      - 27017:27017
+#    volumes:
+#      - vol-mongo:/data
+#    networks:
+#      - fiware
 
-  dataset:
-    image: ging/dataset
-    restart: always
-    links:
-      - mongo-ds
-    environment:
-      - ORION_ENDPOINT=orion:1026
-      - MONGO_URI=mongodb://mongo-ds:27017/
-      - START_DATE=2016-01-14
-      - END_DATE=2016-01-15
-      - FRECUENCY=5
-    depends_on:
-      - mongo-ds
-      - orion
-    networks:
-      - fiware 
+#  dataset:
+#    image: ging/dataset
+#    restart: always
+#    links:
+#      - mongo-ds
+#    environment:
+#      - ORION_ENDPOINT=orion:1026
+#      - MONGO_URI=mongodb://mongo-ds:27017/
+#      - START_DATE=2016-01-14
+#      - END_DATE=2016-01-15
+#      - FRECUENCY=5
+#    depends_on:
+#      - mongo-ds
+#      - orion
+#    networks:
+#      - fiware 
 
 networks:
   fiware:

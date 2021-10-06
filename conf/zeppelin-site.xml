@@ -402,6 +402,12 @@
 </property>
 
 <property>
+  <name>zeppelin.helium.registry</name>
+  <value>https://s3.amazonaws.com/helium-package/helium.json</value>
+  <description>location helium external registry</description>
+</property>
+
+<property>
   <name>zeppelin.interpreter.group.default</name>
   <value>spark</value>
   <description></description>
