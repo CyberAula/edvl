@@ -1,0 +1,13 @@
+{
+  "enabled": {
+    "volume-leaflet": "volume-leaflet@1.0.3",
+    "zeppelin-highmaps": "zeppelin-highmaps@1.0.0",
+    "zeppelin-leaflet": "zeppelin-leaflet@1.0.5"
+  },
+  "packageConfig": {},
+  "bundleDisplayOrder": [
+    "zeppelin-highmaps",
+    "volume-leaflet",
+    "zeppelin-leaflet"
+  ]
+}

@@ -1,5 +1,43 @@
 version: "2"
 services:
+  mongo:
+    image: mongo:4.4
+    command: --nojournal
+    networks:
+      - fiware
+  orion:
+    image: fiware/orion
+    container_name: orion
+    links:
+      - mongo
+    ports:
+      - "1026:1026"
+    command: -dbhost mongo
+    networks:
+      - fiware
+  python_amat:
+    image: python:3
+    container_name: data_amat
+    environment:
+      - FRECUENCY=3
+      - ORION_ENDPOINT=orion:1026
+    command: bash -c "pip install --no-cache-dir -r /data/requirements.txt && python /data/generate-data-amat.py"
+    volumes:
+      - ./data:/data
+    networks:
+     - fiware
+ 
+  python_parking:
+    image: python:3
+    container_name: data_parking
+    environment:
+      - FRECUENCY=3
+      - ORION_ENDPOINT=orion:1026
+    command: bash -c "pip install --no-cache-dir -r /data/requirements.txt && python /data/generate-data-parking.py"
+    volumes:
+      - ./data:/data
+    networks:
+     - fiware
 #  mongo:
 #    container_name: mongo
 #    image: mongo:3.6

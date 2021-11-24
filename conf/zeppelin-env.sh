@@ -62,7 +62,7 @@
 # export ZEPPELIN_NOTEBOOK_ONE_WAY_SYNC         # If there are multiple notebook storages, should we treat the first one as the only source of truth?
 export ZEPPELIN_NOTEBOOK_PUBLIC="false"
 # Make notebook public by default when created, private otherwise
-export ZEPPELIN_INTERPRETER_OUTPUT_LIMIT=2500000
+export ZEPPELIN_INTERPRETER_OUTPUT_LIMIT=1048576
 # export DOCKER_TIME_ZONE # Set to the same time zone as the zeppelin server. E.g, "America/New_York" or "Asia/Shanghai"
 
 #### Spark interpreter configuration ####
