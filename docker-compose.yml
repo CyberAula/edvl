@@ -21,9 +21,10 @@ services:
     environment:
       - FRECUENCY=3
       - ORION_ENDPOINT=orion:1026
-    command: bash -c "pip install --no-cache-dir -r /data/requirements.txt && python /data/generate-data-amat.py"
+    command: bash -c "pip install --no-cache-dir -r /scripts/requirements.txt && python /scripts/generate-data-amat.py"
     volumes:
       - ./data:/data
+      - ./scripts:/scripts
     networks:
      - fiware
  
@@ -33,9 +34,10 @@ services:
     environment:
       - FRECUENCY=3
       - ORION_ENDPOINT=orion:1026
-    command: bash -c "pip install --no-cache-dir -r /data/requirements.txt && python /data/generate-data-parking.py"
+    command: bash -c "pip install --no-cache-dir -r /scripts/requirements.txt && python /scripts/generate-data-parking.py"
     volumes:
       - ./data:/data
+      - ./scripts:/scripts
     networks:
      - fiware
 #  mongo:
